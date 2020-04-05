@@ -36,4 +36,7 @@ configure environment file `.env`
 cp ./env.example .env
 ```
 
-## 
+## run service
+```
+cargo run
+```
