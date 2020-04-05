@@ -31,16 +31,16 @@ _tplfile=$_srcpath/scripts/tpl/controller.tpl
 _tmpfile=$_srcpath/src/controllers/$_var.rs
 cp $_tplfile $_tmpfile
 
-/usr/bin/sed -i .copy "s/_Templates_/$_structs/" $_tmpfile
+/usr/bin/sed -i .copy "s/_Templates_/$_structs/g" $_tmpfile
 rm $_tmpfile.copy
 
-/usr/bin/sed -i .copy "s/_Template_/$_struct/" $_tmpfile
+/usr/bin/sed -i .copy "s/_Template_/$_struct/g" $_tmpfile
 rm $_tmpfile.copy
 
-/usr/bin/sed -i .copy "s/_templates_/$_vars/" $_tmpfile
+/usr/bin/sed -i .copy "s/_templates_/$_vars/g" $_tmpfile
 rm $_tmpfile.copy
 
-/usr/bin/sed -i .copy "s/_template_/$_var/" $_tmpfile
+/usr/bin/sed -i .copy "s/_template_/$_var/g" $_tmpfile
 rm $_tmpfile.copy
 
 # -- model
@@ -48,14 +48,14 @@ _tplmodel=$_srcpath/scripts/tpl/model.tpl
 _tmpmodel=$_srcpath/src/models/$_var.rs
 cp $_tplmodel $_tmpmodel
 
-/usr/bin/sed -i .copy "s/_Templates_/$_structs/" $_tmpmodel
+/usr/bin/sed -i .copy "s/_Templates_/$_structs/g" $_tmpmodel
 rm $_tmpmodel.copy
 
-/usr/bin/sed -i .copy "s/_Template_/$_struct/" $_tmpmodel
+/usr/bin/sed -i .copy "s/_Template_/$_struct/g" $_tmpmodel
 rm $_tmpmodel.copy
 
-/usr/bin/sed -i .copy "s/_templates_/$_vars/" $_tmpmodel
+/usr/bin/sed -i .copy "s/_templates_/$_vars/g" $_tmpmodel
 rm $_tmpmodel.copy
 
-/usr/bin/sed -i .copy "s/_template_/$_var/" $_tmpmodel
+/usr/bin/sed -i .copy "s/_template_/$_var/g" $_tmpmodel
 rm $_tmpmodel.copy
