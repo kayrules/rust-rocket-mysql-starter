@@ -1,3 +1,5 @@
+# rust-rocket-mysql-starter
+
 ```
 diesel setup
 diesel migration run
@@ -21,4 +23,9 @@ table! {
         age -> Nullable<Integer>,
     }
 }
+```
+
+...or on mac, just run the script
+```
+sh ./scripts/nullable-id.sh
 ```
