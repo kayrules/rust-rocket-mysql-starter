@@ -56,4 +56,18 @@ cargo run
 ### CRUD generator script
 ```
 sh ./scripts/crud-generator.sh <model_name>
+
+example:
+sh ./scripts/crud-generator.sh newcrud
+```
+
+this script will auto generate model and controller files,
+but need to register as modules manually under `controllers/mod.rs` and `models/mod.rs`
+```
+pub mod newcrud;
+```
+
+and mount the endpoints under `main.rs`
+```
+.mount("/newcrud", controllers::newcrud::routes())
 ```
