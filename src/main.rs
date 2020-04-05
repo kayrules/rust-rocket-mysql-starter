@@ -18,43 +18,7 @@ mod models;
 mod schema;
 mod utils;
 
-// use controllers::user::*;
 use rocket_contrib::json::Json;
-
-// use models::user::User;
-// use rocket::http::{ContentType, Status};
-// use rocket::request::Request;
-// use rocket::response::{self, Responder, Response};
-// use rocket_contrib::json::{Json, JsonValue};
-// use utils::response::*;
-
-// #[post("/", data = "<user>")]
-// fn create(user: Json<User>, connection: db::Connection) -> ApiResponse {
-//   let insert = User {
-//     id: None,
-//     ..user.into_inner()
-//   };
-//   api_response!(User::create(insert, &connection))
-// }
-
-// #[get("/")]
-// fn read(connection: db::Connection) -> ApiResponse {
-//   api_response!(User::read(&connection))
-// }
-
-// #[put("/<id>", data = "<user>")]
-// fn update(id: i32, user: Json<User>, connection: db::Connection) -> ApiResponse {
-//   let update = User {
-//     id: Some(id),
-//     ..user.into_inner()
-//   };
-//   api_response!(User::update(id, update, &connection))
-// }
-
-// #[delete("/<id>")]
-// fn delete(id: i32, connection: db::Connection) -> ApiResponse {
-//   api_response!(User::delete(id, &connection))
-// }
 
 fn main() {
   rocket::ignite()
