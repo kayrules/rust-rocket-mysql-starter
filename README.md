@@ -51,7 +51,7 @@ diesel migration run
 cargo run
 ```
 
-## Extra
+## Extras
 
 ### CRUD generator script
 ```
