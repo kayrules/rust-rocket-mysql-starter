@@ -31,9 +31,15 @@ table! {
 sh ./scripts/nullable-id.sh
 ```
 
-configure environment file `.env`
+prepare environment file `.env`
 ```
 cp ./env.example .env
+```
+
+configure mysql connection string in both `.env` and `Rocket.toml` files.
+Eg:
+```
+mysql://root:password@127.0.0.1:3306/rust-rocket-mysql-starter?serverTimezone=UTC
 ```
 
 ## run service
