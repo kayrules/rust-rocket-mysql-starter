@@ -1,0 +1,2 @@
+[global.databases]
+mysql_database = { url = "mysql://root:password@127.0.0.1:3306/rust-rocket-mysql-starter?serverTimezone=UTC" }

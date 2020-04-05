@@ -1,0 +1,24 @@
+```
+diesel setup
+diesel migration run
+```
+
+```
+table! {
+    users (id) {
+        id -> Nullable<Integer>, //<-- Nullable added manually for auto-increment field
+        created_at -> Nullable<Datetime>,
+        updated_at -> Nullable<Datetime>,
+        name -> Varchar,
+        email -> Varchar,
+        latitude -> Nullable<Decimal>,
+        longitude -> Nullable<Decimal>,
+        language -> Nullable<Varchar>,
+        country -> Nullable<Varchar>,
+        region -> Nullable<Varchar>,
+        city -> Nullable<Varchar>,
+        gender -> Nullable<Varchar>,
+        age -> Nullable<Integer>,
+    }
+}
+```
