@@ -50,3 +50,10 @@ diesel migration run
 ```
 cargo run
 ```
+
+## Extra
+
+### CRUD generator script
+```
+sh ./scripts/crud-generator.sh <model_name>
+```
