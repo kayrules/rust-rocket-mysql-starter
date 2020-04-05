@@ -1,5 +1,6 @@
 # rust-rocket-mysql-starter
 
+## initial setup
 ```
 diesel setup
 diesel migration run
@@ -29,3 +30,10 @@ table! {
 ```
 sh ./scripts/nullable-id.sh
 ```
+
+configure environment file `.env`
+```
+cp ./env.example .env
+```
+
+## 
