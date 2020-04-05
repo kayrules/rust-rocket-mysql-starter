@@ -1,19 +1,20 @@
 # rust-rocket-mysql-starter
 
-## initial setup
+## Initial setup
 
-###1. prepare environment file `.env`
+### 1. Prepare environment file `.env`
 ```
 cp ./env.example .env
 ```
 
-###2. configure mysql connection string in both `.env` and `Rocket.toml` files.
+### 2. Configure mysql connection string in both `.env` and `Rocket.toml` files.
 Eg:
 ```
 mysql://root:password@127.0.0.1:3306/rust-rocket-mysql-starter?serverTimezone=UTC
 ```
 
-###3.1 to allow using the same struct for read and update table, we need to add `Nullable` flag on every auto increment `id` field.
+### 3. To allow using the same struct for read and update table, we need to add `Nullable` flag on every auto increment `id` field
+### 3.1 Manual 
 ```
 table! {
     users (id) {
@@ -34,18 +35,18 @@ table! {
 }
 ```
 
-###3.2 ...or on mac, just run the script to automate the step using `sed` command
+### 3.2 Automate the step using `sed` command (Mac / *nix platform)
 ```
 sh ./scripts/nullable-id.sh
 ```
 
-###4. run diesel command to auto create database and 
+### 4. Run diesel command to auto create database and 
 ```
 diesel setup
 diesel migration run
 ```
 
-## run service
+## Run service
 ```
 cargo run
 ```
