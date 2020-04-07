@@ -62,7 +62,7 @@ sh ./scripts/crud-generator.sh newcrud
 ```
 
 this script will auto generate model and controller files,
-but need to register as modules manually under `controllers/mod.rs` and `models/mod.rs`
+but need to register as module manually under `controllers/mod.rs` and `models/mod.rs`
 ```
 pub mod newcrud;
 ```

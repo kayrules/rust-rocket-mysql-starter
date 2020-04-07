@@ -18,12 +18,10 @@ mod models;
 mod schema;
 mod utils;
 
-use rocket_contrib::json::Json;
-
 fn main() {
-  rocket::ignite()
-    .manage(db::connect())
-    .mount("/user", controllers::user::routes())
-    .register(utils::catcher::catchers())
-    .launch();
+    rocket::ignite()
+        .manage(db::connect())
+        .mount("/user", controllers::user::routes())
+        .register(utils::catcher::catchers())
+        .launch();
 }
