@@ -1,5 +1,4 @@
 use crate::schema::_templates_;
-use bigdecimal::BigDecimal;
 use chrono::{NaiveDateTime, Utc};
 use diesel;
 use diesel::mysql::MysqlConnection;
