@@ -3,7 +3,6 @@ use chrono::{NaiveDateTime, Utc};
 use diesel;
 use diesel::mysql::MysqlConnection;
 use diesel::prelude::*;
-use diesel::result::Error;
 
 #[table_name = "_templates_"]
 #[derive(Serialize, AsChangeset, Deserialize, Queryable, Insertable)]
@@ -15,7 +14,7 @@ pub struct _Template_ {
 }
 
 impl _Template_ {
-  pub fn create(_template_: _Template_, conn: &MysqlConnection) -> Result<_Template_, Error> {
+  pub fn create(_template_: _Template_, conn: &MysqlConnection) -> _Template_ {
     let new__template_ = _Template_ {
       created_at: Some(Utc::now().naive_utc()),
       updated_at: Some(Utc::now().naive_utc()),
@@ -29,19 +28,22 @@ impl _Template_ {
     _templates_::table
       .order(_templates_::id.desc())
       .first(conn)
+      .unwrap()
   }
 
-  pub fn read(conn: &MysqlConnection) -> Result<Vec<_Template_>, Error> {
+  pub fn read(conn: &MysqlConnection) -> Vec<_Template_> {
     _templates_::table
       .order(_templates_::id.asc())
       .load::<_Template_>(conn)
+      .unwrap()
   }
 
-  pub fn read_by_id(id: i32, conn: &MysqlConnection) -> Result<Vec<_Template_>, Error> {
+  pub fn read_by_id(id: i32, conn: &MysqlConnection) -> Vec<_Template_> {
     _templates_::table
       .find(id)
       .order(_templates_::id.asc())
       .load::<_Template_>(conn)
+      .unwrap()
   }
 
   pub fn update(id: i32, _template_: _Template_, conn: &MysqlConnection) -> bool {
