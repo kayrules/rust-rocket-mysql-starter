@@ -1,7 +1,6 @@
 use diesel::result::Error as DieselError;
 use rocket::http::Status;
 use rocket::response::Responder;
-// use rocket_contrib::json::JsonError;
 use std::convert::From;
 use std::error::Error as StdError;
 use std::fmt;

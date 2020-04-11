@@ -2,7 +2,7 @@ use super::response::{fail, ApiError};
 use rocket::http::Status;
 
 fn catcher_response(status: Status) -> ApiError {
-    fail(status.code, status.to_string())
+    fail(status.code, status.reason.to_string(), status.to_string())
 }
 
 #[catch(400)]

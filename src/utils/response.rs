@@ -1,9 +1,11 @@
 use diesel::result::Error as DieselError;
+use rocket::http::Status;
 use rocket::response::Responder;
 use rocket_contrib::json::{Json, JsonError, JsonValue};
 
 #[derive(Serialize, Debug)]
 pub struct ResponseError {
+    pub message: String,
     pub error: String,
     pub code: u16,
 }
@@ -11,13 +13,13 @@ pub struct ResponseError {
 #[derive(Serialize, Debug)]
 pub struct ResponseSuccess {
     pub response: JsonValue,
-    pub code: usize,
+    pub code: u16,
 }
 
 impl ResponseSuccess {
     pub fn ok(response: JsonValue) -> Json<ResponseSuccess> {
         Json(ResponseSuccess {
-            code: 200,
+            code: Status::Ok.code,
             response,
         })
     }
@@ -40,9 +42,10 @@ pub fn success(result: JsonValue) -> ApiResponse {
     ApiResponse::Ok(ResponseSuccess::ok(result))
 }
 
-pub fn fail(code: u16, message: String) -> ApiError {
+pub fn fail(code: u16, error: String, message: String) -> ApiError {
     ApiError::Bad(Json(ResponseError {
-        error: message,
+        message,
+        error,
         code,
     }))
 }
@@ -52,9 +55,12 @@ pub fn json_error(e: JsonError) -> ApiError {
         JsonError::Parse(_, error) => format!("{}", error),
         _ => format!("Json syntax error"),
     };
-    fail(422, temp)
+
+    let status = Status::UnprocessableEntity;
+    fail(status.code, status.reason.to_string(), temp)
 }
 
 pub fn db_error(e: DieselError) -> ApiError {
-    fail(500, e.to_string())
+    let status = Status::BadRequest;
+    fail(status.code, status.reason.to_string(), e.to_string())
 }
