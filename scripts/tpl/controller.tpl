@@ -55,8 +55,12 @@ fn update(
                 id: Some(id),
                 ..u.into_inner()
             };
-            let result = json!(_Template_::update(id, update, &conn));
-            Ok(success(result))
+            let result = _Template_::update(id, update, &conn);
+	    match result {
+                Ok(r) => Ok(success(json!(r))),
+                Err(e) => Err(db_error(e)),
+            }
+
         }
         Err(e) => Err(json_error(e)),
     }

@@ -21,34 +21,39 @@ impl _Template_ {
             updated_at: Some(Utc::now().naive_utc()),
             .._template_
         };
-        diesel::insert_into(_templates_::table)
-            .values(&new__template_)
-            .execute(conn)
-            .expect("Error creating new _template_");
 
-        _templates_::table.order(_templates_::id.desc()).first(conn)
+        let ops = diesel::insert_into(_templates_::table)
+            .values(&new__template_)
+            .execute(conn);
+	
+	match ops {
+            Ok(_) => _templates_::table.order(_templates_::id.desc()).first(conn),
+            Err(e) => Err(e),
+        }
     }
 
     pub fn read(conn: &MysqlConnection) -> Result<Vec<_Template_>, Error> {
         _templates_::table.order(_templates_::id.asc()).load::<_Template_>(conn)
     }
 
-    pub fn read_by_id(id: i32, conn: &MysqlConnection) -> Result<Vec<_Template_>, Error> {
-        _templates_::table
-            .find(id)
-            .order(_templates_::id.asc())
-            .load::<_Template_>(conn)
+    pub fn read_by_id(id: i32, conn: &MysqlConnection) -> Result<_Template_, Error> {
+        _templates_::table.find(id).first(conn)
     }
 
-    pub fn update(id: i32, _template_: _Template_, conn: &MysqlConnection) -> bool {
+    pub fn update(id: i32, _template_: _Template_, conn: &MysqlConnection) -> Result<_Template_, Error> {
         let new__template_ = _Template_ {
             updated_at: Some(Utc::now().naive_utc()),
             .._template_
         };
-        diesel::update(_templates_::table.find(id))
+        
+	let ops = diesel::update(_templates_::table.find(id))
             .set(&new__template_)
-            .execute(conn)
-            .is_ok()
+            .execute(conn);
+
+	match ops {
+            Ok(_) => _templates_::table.find(id).first(conn),
+            Err(e) => Err(e),
+        }
     }
 
     pub fn delete(id: i32, conn: &MysqlConnection) -> bool {
